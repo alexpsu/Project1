@@ -1,15 +1,15 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-var Sick = require('./sick');
+var Cold = require('./cold');
 
 var UserSchema = new Schema({
 	userName: String,
-	Sex: String,
+	Gender: String,
 	Age: Number,
-	sicks: [Sick.schema]
+	colds: [Cold.schema]
 });
 
 var User = mongoose.model('User', UserSchema);
 
 module.exports = User;
-module.exports.Sick = require("./sick.js");
+module.exports.Cold = require("./cold.js");

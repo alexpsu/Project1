@@ -1,14 +1,15 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
+var Log = require('./log');
 
-var SickSchema = new Schema({
+var ColdSchema = new Schema({
 	name: String,
 	dateStart: Date,
 	dateEnd: Date,
 	logs: [Log.schema]
 })
 
-var Sick = mongoose.model('Sick', SickSchema);
+var Cold = mongoose.model('Cold', ColdSchema);
 
-module.exports = Sick;
+module.exports = Cold;
 module.exports.Log = require("./log.js");

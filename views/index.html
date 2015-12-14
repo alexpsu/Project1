@@ -6,17 +6,92 @@
 	<title>Let's Get Better</title>
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css">
 
-    <!-- VENDOR SCRIPTS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<!-- VENDOR SCRIPTS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.min.js"></script>
 
-    <!-- APPLICATION SCRIPTS -->
-    <script src="js/app.js"></script>
+	<!-- APPLICATION SCRIPTS -->
+	<script src="js/app.js"></script>
 
 </head>
 <body>
-	
+	<div class="jumbotron">
+    <div class="container">
+    	<h1>Feeling CRUDdy?</h1>
+    	<p>Let's make you feel better!</p>
+    </div>
+  </div>
+
+  <section id='user-form' class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+
+        <form class="form-horizontal" id='new-user'>
+        <fieldset>
+
+        <!-- Form Name -->
+        <legend>New User</legend>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="name">Your Name</label>
+          <div class="col-md-4">
+            <input id="name" name="name" type="text" placeholder="" class="form-control input-md" required="">
+
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="name">Gender</label>
+          <div class="col-md-4">
+            <input id="gender" name="gender" type="text" placeholder="" class="form-control input-md" required="">
+
+          </div>
+        </div>        
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="name">Age</label>
+          <div class="col-md-4">
+            <input id="age" name="age" type="age" placeholder="" class="form-control input-md" required="">
+
+          </div>
+        </div>
+
+
+
+        <!-- Button -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="singlebutton">Save Album</label>
+          <div class="col-md-4">
+            <button id="singlebutton" name="singlebutton" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+        </fieldset>
+      	</form>
+    	</div>
+    </div>
+  </section>
+
+  <section class="container">
+  	<div class="row">
+    	<div class="col-md-10 col-md-offset-1">
+      	<h2>Users</h2>
+    	</div>
+  	</div>
+  	<!-- albums! -->
+  	<div id='users'>
+	    <!-- handlebars template -->
+	    <script id="users-template" type="text/x-handlebars-template">
+	      {{#each user}}
+	      <p><a href="users/show.html"><strong>{{name}}</strong></a></p>
+	      {{/each}}
+	    </script>
+  	</div>
+  </section>
+
 </body>
 </html>

@@ -7,7 +7,7 @@ var LogSchema = new Schema({
 	Symptons:[String],
 	vitamins: Number,
 	exercise: Number
-})
+});
 
 var Log = mongoose.model('Log', LogSchema);
 

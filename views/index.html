@@ -83,11 +83,13 @@
     	</div>
   	</div>
   	<!-- albums! -->
-  	<div id='users'>
+  	<div id='users-list'>
 	    <!-- handlebars template -->
 	    <script id="users-template" type="text/x-handlebars-template">
-	      {{#each user}}
-	      <p><a href="users/show.html"><strong>{{name}}</strong></a></p>
+	      {{#each users}}
+	      <li class="list-group-item user" data-id="{{_id}}">
+	      <span><a href="users/{{_id}}"><strong>{{userName}}</strong></a></span>
+	      <span>{{colds.length}} colds</span>
 	      {{/each}}
 	    </script>
   	</div>

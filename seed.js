@@ -3,31 +3,31 @@
 
 var db = require("./models");
 
-var sampleUser = { userName: 'Alex', gender: 'male', age: 22 };
+var sampleUser = [{ userName: 'Alex', gender: 'male', age: 22 }];
 
 var sampleColds =[
 {
 	name: 'Cold1',
-	dateStart: ,
-	dateEnd: ,
+	dateStart: '12-01-2015',
+	dateEnd: '12-06-2015',
 },
 {
 	name: 'Cold2',
-	dateStart: ,
-	dateEnd: ,
+	dateStart: '12-12-2015',
+	dateEnd: '12-18-2015',
 }
-]:
+];
 
 var sampleLogs =[
 {
-	currentDate: Date,
+	currentDate: '2015-12-12',
 	feelScale: 1,
 	Symptons:[ 'cough', 'soar-throat', 'fever' ],
 	vitamins: 1,
 	exercise: 1
 },
 {
-	currentDate: Date,
+	currentDate: '2015-12-18',
 	feelScale: 3,
 	Symptons:[ 'tired', 'runny-nose' ],
 	vitamins: 3,

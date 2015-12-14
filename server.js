@@ -14,6 +14,14 @@ app.get('/', function homepage (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
+app.get('/users/:id', function homepage (req, res) {
+  res.sendFile(__dirname + '/views/users/show.html');
+});
+
+app.get('/colds', function homepage (req, res) {
+  res.sendFile(__dirname + '/views/colds/show.html');
+});
+
 /*
  * JSON API Endpoints
  */
@@ -32,6 +40,12 @@ app.get('/api/users', function index(req, res){
  		if(err){console.log(err)};
  		res.json({users: allUsers});
  	});
+});
+
+app.get('/api/users/:id', function index(req, res){
+	db.User.findOne({_id: req.params.id}, function(err, user) {
+		res.json(user);
+	});
 });
 
 app.post('/api/users', function create(req, res){
@@ -67,6 +81,7 @@ app.post('/api/users/:userId/colds', function create(req, res){
 
 app.get('/api/users/:userId/colds/:id', function index(req, res){
 	console.log('requested user id=', req.params.userid);
+	var coldId = req.params.id;
 	db.User.findOne({_id: req.params.userid}, function(err, user) {
 		var foundCold = user.colds.id(coldId);
 		res.json(foundCold);
@@ -110,6 +125,7 @@ app.delete('/api/users/:userId/colds/:id', function(req, res) {
 
 app.get('/api/users/:userId/colds/:coldId/logs', function index(req, res){
 	console.log('requested user id=', req.params.userid);
+	var coldId = req.params.coldId;
 	db.User.findOne({_id: req.params.userid}, function(err, user) {
 		var foundCold = user.colds.id(coldId);
 		var logs = foundCold.logs;
@@ -119,6 +135,7 @@ app.get('/api/users/:userId/colds/:coldId/logs', function index(req, res){
 
 app.post('/api/users/:userId/colds/:coldId/logs', function create(req, res){
   console.log('body', req.body);
+  var coldId = req.params.coldId;
   db.User.findOne({_id: req.params.userId}, function(err, user) {
     if (err) { console.log('error', err); }
     var foundCold = user.colds.id(coldId);
@@ -131,6 +148,17 @@ app.post('/api/users/:userId/colds/:coldId/logs', function create(req, res){
       res.json(foundCold.logs);
     });
   });
+});
+
+app.get('/api/users/:userId/colds/:coldId/logs/:id', function index(req, res){
+	console.log('requested user id=', req.params.userid);
+	var coldId = req.params.coldId;
+	var logId = req.params.id;
+	db.User.findOne({_id: req.params.userid}, function(err, user) {
+		var foundCold = user.colds.id(coldId);
+		var logs = foundCold.logs.id(logId);
+		res.json(logs);
+    });
 });
 
 /**********

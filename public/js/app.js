@@ -7,6 +7,7 @@ $(document).ready(function(){
 	var allUsers = [];
 	var $userList;
 	var $createUser = $('#create-user');
+	var sourceUser;
 
 	var userHtml;
 	var userToOpen;
@@ -26,14 +27,17 @@ $(document).ready(function(){
 		userToOpen = allUsers.filter(function (user) {
 			return user._id == userId;
 		})
-		console.log(userToOpen);
-		source = $('#user-template').html();
-		template = Handlebars.compile(source);
-		$userList = $('#user-list');
-		$.get(baseUrl + "/userId", function(element){
-			console.log("Something");
-			userHtml = template({users: userToOpen});
-			$userList.append(userHtml);
-		})
 	});
+
+	var url = window.location.href.split("/");
+	var id = url[url.length-1];
+	console.log(id);
+	$.get(baseUrl + "/" + id, function(element){
+		console.log("This is the ele", element);
+		sourceUser = $('#user-template').html();
+		template = Handlebars.compile(sourceUser);
+		$userList = $('#user-list');
+		userHtml = template({user: element});
+		$userList.append(userHtml);
+	})
 });

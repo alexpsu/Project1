@@ -1,10 +1,15 @@
 .jumbotron {
-  background-color: blue;
-  background-size: cover;
+  background-image: url(/images/Background.png);
+  background-size: inherit;
   background-repeat: no-repeat;
-  color: #EEE;
 }
 
 .jumbotron .container {
-  height: 350px;
+	height: 350px;
+}
+
+.inline-header {
+  display: inline-block;
+  vertical-align: baseline;
+  margin-right: 12px;
 }

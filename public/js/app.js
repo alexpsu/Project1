@@ -13,7 +13,9 @@ $(document).ready(function(){
 	var userToOpen;
 	var userId;
 
+
 	$.get(baseUrl, function(element){
+		console.log("It runs again");
 		source = $('#users-template').html();
 		template = Handlebars.compile(source);
 		$userList = $('#users-list');
@@ -31,13 +33,35 @@ $(document).ready(function(){
 
 	var url = window.location.href.split("/");
 	var id = url[url.length-1];
-	console.log(id);
 	$.get(baseUrl + "/" + id, function(element){
-		console.log("This is the ele", element);
 		sourceUser = $('#user-template').html();
 		template = Handlebars.compile(sourceUser);
 		$userList = $('#user-list');
 		userHtml = template({user: element});
 		$userList.append(userHtml);
 	})
+
+	$createUser.on('submit', function (event) {
+    	event.preventDefault();
+    	source = $('#users-template').html();
+		template = Handlebars.compile(source);
+		$userList = $('#users-list');
+    	var newUser = $createUser.serialize();
+    	$createUser[0].reset();
+    	console.log("This is new user", newUser);
+    	$.ajax({
+    		method: 'POST',
+    		url: baseUrl,
+    		data: newUser,
+    		success: function(taco) {
+    			console.log("this is taco", taco);
+    			$userList.empty();
+    			allUsers.push(taco.user);
+    			console.log("These are all users", allUsers);
+    			userHtml = template({users: allUsers});
+				$userList.append(userHtml);
+      		}
+    	});
+	});
+
 });

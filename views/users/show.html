@@ -87,7 +87,7 @@
 	<div id='colds-list'>
     <!-- handlebars template -->
     <script id="colds-template" type="text/x-handlebars-template">
-      {{#each colds}}
+      {{#each user.colds}}
       <li class="list-group-item" data-id="{{_id}}">
       <span><a href="/colds/{{_.id}}"><strong>{{name}}</strong></a></span>
       <span>{{dateStart}} to {{dateEnd}}</span>

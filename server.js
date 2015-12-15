@@ -8,6 +8,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // serve static files from public folder
 app.use(express.static(__dirname + '/public'));
 
+app.set('view engine', 'hbs');
+
 var db = require("./models");
 
 app.get('/', function homepage (req, res) {

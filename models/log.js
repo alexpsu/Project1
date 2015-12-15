@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var LogSchema = new Schema({
-	currentDate: Date,
+	currentDate: String,
 	feelScale: Number,
 	Symptons:[String],
 	vitamins: Number,

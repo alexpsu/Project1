@@ -57,11 +57,19 @@ $(document).ready(function(){
 	var url = window.location.href.split("/");
 	var id = url[url.length-1];
 	$.get(baseUrl + "/" + id, function(element){
+		console.log(element);
+		console.log("Yup", element.colds)
 		sourceUser = $('#user-template').html();
 		template = Handlebars.compile(sourceUser);
-		$userList = $('#user-list');
-		userHtml = template({user: element});
-		$userList.append(userHtml);
+		var $userName = $('#user-Name');
+		var userNameHtml = template({user: element});
+		$userName.append(userNameHtml);
+
+		sourceCold = $('#colds-template').html();
+		template = Handlebars.compile(sourceCold);
+		var $coldslist = $('#colds-list');
+		var coldsHtml = template({colds: element.colds});
+		$coldslist.append(coldsHtml);
 	})
 
 });

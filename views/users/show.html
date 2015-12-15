@@ -19,7 +19,7 @@
 <body>
 	<div class="jumbotron">
     <div class="container">
-      <div id="user-list">
+      <div id="user-Name">
 		
     	</div>
     	<p>Lets make you feel better</p>
@@ -83,14 +83,14 @@
     	<h2>Colds</h2>
   	</div>
 	</div>
-	<!-- albums! -->
-	<div id='user-list'>
+	<!-- User! -->
+	<div id='colds-list'>
     <!-- handlebars template -->
-    <script id="user-template" type="text/x-handlebars-template">
-      {{#each user.colds}}
-      <li class="list-group-item user" data-id="{{_id}}">
-      <span><a href="users/{{_id}}"><strong>{{userName}}</strong></a></span>
-      <span>{{colds.length}} colds</span>
+    <script id="colds-template" type="text/x-handlebars-template">
+      {{#each colds}}
+      <li class="list-group-item" data-id="{{_id}}">
+      <span><a href="/colds/{{_.id}}"><strong>{{name}}</strong></a></span>
+      <span>{{dateStart}} to {{dateEnd}}</span>
       {{/each}}
     </script>
 	</div>

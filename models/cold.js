@@ -4,8 +4,8 @@ var Log = require('./log');
 
 var ColdSchema = new Schema({
 	name: String,
-	dateStart: Date,
-	dateEnd: Date,
+	dateStart: String,
+	dateEnd: String,
 	logs: [Log.schema]
 })
 

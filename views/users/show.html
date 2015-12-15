@@ -26,6 +26,76 @@
   	</div>
 	</div>
 
+  <section id='cold-form' class="container">
+  <div class="row">
+  <div class="col-md-10 col-md-offset-1">
+
+    <form class="form-horizontal" id='new-cold'>
+      <fieldset>
+
+        <!-- Form Name -->
+        <legend>Add New Cold</legend>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="name">Cold Name</label>
+          <div class="col-md-4">
+          <input id="name" name="name" type="text" placeholder="Ex. Cold1" class="form-control input-md" required="">
+
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="dateStart">What day did it start?</label>
+          <div class="col-md-4">
+          <input id="dateStart" name="dateStart" type="text" placeholder="mm-dd-year" class="form-control input-md">
+
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="dateEnd">What day did it end?</label>
+          <div class="col-md-4">
+          <input id="dateEnd" name="dateEnd" type="text" placeholder="mm-dd-year" class="form-control input-md">
+
+          </div>
+        </div>
+
+
+        <!-- Button -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="singlebutton">Create Cold</label>
+          <div class="col-md-4">
+            <button id="singlebutton" name="singlebutton" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  </div>
+</section>
+
+<section class="container">
+	<div class="row">
+  	<div class="col-md-10 col-md-offset-1">
+    	<h2>Colds</h2>
+  	</div>
+	</div>
+	<!-- albums! -->
+	<div id='user-list'>
+    <!-- handlebars template -->
+    <script id="user-template" type="text/x-handlebars-template">
+      {{#each user.colds}}
+      <li class="list-group-item user" data-id="{{_id}}">
+      <span><a href="users/{{_id}}"><strong>{{userName}}</strong></a></span>
+      <span>{{colds.length}} colds</span>
+      {{/each}}
+    </script>
+	</div>
+</section>
+
   <script id="user-template" type="text/x-handlebars-template">
   		<h1>Welcome {{user.userName}}</h1>
   </script>

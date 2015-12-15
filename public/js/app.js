@@ -24,23 +24,6 @@ $(document).ready(function(){
 		$userList.append(userHtml);
 	});
 
-	$('#users-list').on('click', '.user', function (event) {
-		userId = $(this).closest('.user').attr('data-id');
-		userToOpen = allUsers.filter(function (user) {
-			return user._id == userId;
-		})
-	});
-
-	var url = window.location.href.split("/");
-	var id = url[url.length-1];
-	$.get(baseUrl + "/" + id, function(element){
-		sourceUser = $('#user-template').html();
-		template = Handlebars.compile(sourceUser);
-		$userList = $('#user-list');
-		userHtml = template({user: element});
-		$userList.append(userHtml);
-	})
-
 	$createUser.on('submit', function (event) {
     	event.preventDefault();
     	source = $('#users-template').html();
@@ -63,5 +46,22 @@ $(document).ready(function(){
       		}
     	});
 	});
+
+	$('#users-list').on('click', '.user', function (event) {
+		userId = $(this).closest('.user').attr('data-id');
+		userToOpen = allUsers.filter(function (user) {
+			return user._id == userId;
+		})
+	});
+
+	var url = window.location.href.split("/");
+	var id = url[url.length-1];
+	$.get(baseUrl + "/" + id, function(element){
+		sourceUser = $('#user-template').html();
+		template = Handlebars.compile(sourceUser);
+		$userList = $('#user-list');
+		userHtml = template({user: element});
+		$userList.append(userHtml);
+	})
 
 });

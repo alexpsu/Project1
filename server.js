@@ -17,11 +17,18 @@ app.get('/', function homepage (req, res) {
 });
 
 app.get('/users/:id', function homepage (req, res) {
-  res.sendFile(__dirname + '/views/users/show.html');
+  	db.User.findOne({_id: req.params.id}, function(err, userdata) {
+		res.render('users/show', {user: userdata});
+	});
 });
 
-app.get('/colds', function homepage (req, res) {
-  res.sendFile(__dirname + '/views/colds/show.html');
+app.get('/users/:userId/colds/:id', function homepage (req, res) {
+  db.User.findOne({_id: req.params.userId}, function(err, userdata) {
+  	var coldId = req.params.id;
+  	var name = userdata.userName;
+  	var foundCold = userdata.colds.id(coldId);
+  	res.render('colds/show', {userName: name, cold: foundCold});
+  });
 });
 
 /*
@@ -47,6 +54,7 @@ app.get('/api/users', function index(req, res){
 app.get('/api/users/:id', function index(req, res){
 	db.User.findOne({_id: req.params.id}, function(err, user) {
 		res.json(user);
+		var foundCold = user.colds.id(coldId);
 	});
 });
 

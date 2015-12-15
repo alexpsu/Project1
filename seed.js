@@ -24,14 +24,16 @@ var sampleLogs =[
 	feelScale: 1,
 	Symptons:[ 'cough', 'soar-throat', 'fever' ],
 	vitamins: 1,
-	exercise: 1
+	exercise: 'ran',
+	details: 'Morning, feel like shit.'
 },
 {
 	currentDate: '2015-12-18',
 	feelScale: 3,
 	Symptons:[ 'tired', 'runny-nose' ],
 	vitamins: 3,
-	exercise: 3
+	exercise: 'spin class',
+	details: 'Evening, feel better.'
 }
 ];
 

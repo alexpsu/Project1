@@ -7,7 +7,7 @@ var ColdSchema = new Schema({
 	dateStart: String,
 	dateEnd: String,
 	logs: [Log.schema]
-})
+});
 
 var Cold = mongoose.model('Cold', ColdSchema);
 

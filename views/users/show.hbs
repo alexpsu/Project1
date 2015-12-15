@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Let's Get Better</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://localhost:3000/css/styles.css">
+
+	<!-- VENDOR SCRIPTS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.min.js"></script>
+
+	<!-- APPLICATION SCRIPTS -->
+	<script src="http://localhost:3000/js/app.js"></script>
+</head>
+<body>
+	<div class="jumbotron">
+    <div class="container">
+      <div id="user-Name">
+        <h1>Welcome {{user.userName}}</h1>
+    	</div>
+    	<p>Lets make you feel better</p>
+  	</div>
+	</div>
+
+<section id='cold-form' class="container">
+  <div class="row">
+  <div class="col-md-10 col-md-offset-1">
+
+    <form class="form-horizontal" id='new-cold'>
+      <fieldset>
+
+        <!-- Form Name -->
+        <legend>Add a New Cold</legend>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="name">Cold Name</label>
+          <div class="col-md-4">
+          <input id="name" name="name" type="text" placeholder="Ex. Cold1" class="form-control input-md" required="">
+
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="dateStart">What day did it start?</label>
+          <div class="col-md-4">
+          <input id="dateStart" name="dateStart" type="text" placeholder="mm-dd-year" class="form-control input-md">
+
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="dateEnd">What day did it end?</label>
+          <div class="col-md-4">
+          <input id="dateEnd" name="dateEnd" type="text" placeholder="mm-dd-year" class="form-control input-md">
+
+          </div>
+        </div>
+
+        <!-- Button -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="singlebutton">Create Cold</label>
+          <div class="col-md-4">
+            <button id="singlebutton" name="singlebutton" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  </div>
+</section>
+
+<section class="container">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <h2>Colds</h2>
+    </div>
+  </div>
+  <!-- User! -->
+  <div id='colds-list'>
+    <!-- handlebars template -->
+ 
+    {{#each user.colds}}
+    <li class="list-group-item cold" data-id="{{_id}}">
+    <a href=""><strong>{{name}}</strong></a>
+    <span>{{dateStart}} to {{dateEnd}}</span>
+    {{/each}}
+
+  </div>
+</section>
+
+
+</body>
+
+</html>
+
+
+
+</body>
+
+</html>

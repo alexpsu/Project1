@@ -3,7 +3,7 @@ $(document).ready(function(){
 
 	var source;
 	var template;
-	var baseUrl = '/api/users';
+	var baseUrl = '/api/users/';
 	var allUsers = [];
 	var $userList;
 	var $createUser = $('#create-user');
@@ -15,7 +15,6 @@ $(document).ready(function(){
 
 
 	$.get(baseUrl, function(element){
-		console.log("It runs again");
 		source = $('#users-template').html();
 		template = Handlebars.compile(source);
 		$userList = $('#users-list');
@@ -48,27 +47,57 @@ $(document).ready(function(){
 	});
 
 	$('#users-list').on('click', '.user', function (event) {
+		event.preventDefault();
 		userId = $(this).closest('.user').attr('data-id');
 		userToOpen = allUsers.filter(function (user) {
 			return user._id == userId;
-		})
+			console.log(user);
+		});
+		location.href = "users/" + userId;
 	});
 
 	var url = window.location.href.split("/");
 	var id = url[url.length-1];
-	$.get(baseUrl + "/" + id, function(element){
-		sourceUser = $('#user-template').html();
-		template = Handlebars.compile(sourceUser);
-		var $userName = $('#user-Name');
-		var userNameHtml = template({user: element});
-		$userName.append(userNameHtml);
-		$('#cold-name').append(userNameHtml);
+	$('#new-cold').on('submit', function (event) {
+    	event.preventDefault();
+    	console.log("Lets try this", userToOpen);
+    	var newCold = $('#new-cold').serialize();
+    	$('#new-cold')[0].reset();
+    	console.log("This is new cold", newCold);
+    	$.ajax({
+    		method: 'POST',
+    		url: baseUrl + id + "/colds",
+    		data: newCold,
+    		success: function(taco) {
+    			console.log("this is taco", taco);
+      		}
+    	});
+    	location.reload();
+	});
 
-		sourceCold = $('#colds-template').html();
-		template = Handlebars.compile(sourceCold);
-		var $coldslist = $('#colds-list');
-		var coldsHtml = template({user: element});
-		$coldslist.append(coldsHtml);
-	})
+	var userUrl = window.location.href.split("/");
+	var userId = userUrl[url.length-1];
+	$('#colds-list').on('click', '.cold', function (event) {
+		event.preventDefault();
+		coldId = $(this).attr('data-id');
+		location.href = userId + "/colds/" + coldId;
+	});
+
+	// var url = window.location.href.split("/");
+	// var id = url[url.length-1];
+	// $.get(baseUrl + "/" + id, function(element){
+	// 	sourceUser = $('#user-template').html();
+	// 	template = Handlebars.compile(sourceUser);
+	// 	var $userName = $('#user-Name');
+	// 	var userNameHtml = template({user: element});
+	// 	$userName.append(userNameHtml);
+	// 	$('#cold-name').append(userNameHtml);
+
+	// 	sourceCold = $('#colds-template').html();
+	// 	template = Handlebars.compile(sourceCold);
+	// 	var $coldslist = $('#colds-list');
+	// 	var coldsHtml = template({user: element});
+	// 	$coldslist.append(coldsHtml);
+	// })
 
 });

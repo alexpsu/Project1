@@ -26,15 +26,15 @@
   	</div>
 	</div>
 
-  <section id='cold-form' class="container">
+  <section id='log-form' class="container">
   <div class="row">
   <div class="col-md-10 col-md-offset-1">
 
-    <form class="form-horizontal" id='new-cold'>
+    <form class="form-horizontal" id='new-log'>
       <fieldset>
 
         <!-- Form Name -->
-        <legend>Add New Cold</legend>
+        <legend>Add New Log</legend>
 
         <!-- Text input-->
         <div class="form-group">
@@ -46,7 +46,7 @@
 
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="dateStart">How do you feel? 1-10</label>
+          <label class="col-md-4 control-label" for="dateStart">How do you feel today? From 1-10</label>
           <div class="col-md-4">
           <input id="feelScale" name="feelScale" type="text" placeholder="" class="form-control input-md">
           </div>
@@ -62,7 +62,7 @@
 
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="dateStart">Vitamin Intake 1-10</label>
+          <label class="col-md-4 control-label" for="dateStart">Vitamin Intake Yesterday. From 1-10</label>
           <div class="col-md-4">
           <input id="vitamins" name="vitamins" type="text" placeholder="" class="form-control input-md">
           </div>
@@ -70,16 +70,16 @@
 
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="dateStart">Exercise</label>
+          <label class="col-md-4 control-label" for="dateStart">What exercise did you do yesterday?</label>
           <div class="col-md-4">
-          <input id="exercise" name="exercise" type="text" placeholder="Spin Class, Ran" class="form-control input-md">
+          <input id="exercise" name="exercise" type="text" placeholder="Spin class, Went for a run" class="form-control input-md">
           </div>
         </div>
 
         <div class="form-group">
           <label class="col-md-4 control-label" for="dateStart">Details</label>
           <div class="col-md-4">
-          <input id="details" name="details" type="text" placeholder="Morning, feel crappy" class="form-control input-md">
+          <input id="details" name="details" type="text" placeholder="Morning, feel crappy." class="form-control input-md">
           </div>
         </div>
 
@@ -99,17 +99,20 @@
 <section class="container">
 	<div class="row">
   	<div class="col-md-10 col-md-offset-1">
-    	<h2>Colds</h2>
+    	<h2>Logs</h2>
   	</div>
 	</div>
 	<!-- User! -->
 	<div id='colds-list'>
     <!-- handlebars template -->
  
-      {{#each user.colds}}
+      {{#each cold.logs}}
       <li class="list-group-item cold" data-id="{{_id}}">
-      <a href=""><strong>{{name}}</strong></a>
-      <span>{{dateStart}} to {{dateEnd}}</span>
+      <h4><strong>Log made on {{currentDate}}</strong></h4>
+      <div>On {{currentDate}} you were a <strong>{{feelScale}} out of 10.</strong></div>
+      <div>Your vitamin intake was a <strong>{{vitamins}} out of 10.</strong></div>
+      <div>Your exercise yesterday consisted of: <strong>{{exercise}}.</strong></div>
+      <div>Here are your details on the day: <strong>{{details}}</strong></div>
       {{/each}}
 
 	</div>

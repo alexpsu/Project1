@@ -56,11 +56,10 @@ $(document).ready(function(){
 		location.href = "users/" + userId;
 	});
 
-	var url = window.location.href.split("/");
-	var id = url[url.length-1];
 	$('#new-cold').on('submit', function (event) {
     	event.preventDefault();
-    	console.log("Lets try this", userToOpen);
+		var url = window.location.href.split("/");
+		var id = url[url.length-1];
     	var newCold = $('#new-cold').serialize();
     	$('#new-cold')[0].reset();
     	console.log("This is new cold", newCold);
@@ -75,12 +74,31 @@ $(document).ready(function(){
     	location.reload();
 	});
 
-	var userUrl = window.location.href.split("/");
-	var userId = userUrl[url.length-1];
 	$('#colds-list').on('click', '.cold', function (event) {
 		event.preventDefault();
+		var userUrl = window.location.href.split("/");
+		var userId = userUrl[userUrl.length-1];
 		coldId = $(this).attr('data-id');
 		location.href = userId + "/colds/" + coldId;
+	});
+
+	$('#new-log').on('submit', function (event) {
+    	event.preventDefault();
+    	var url = window.location.href.split("/");
+		var userId = url[4];
+		var coldId = url[url.length-1];
+    	var newLog = $('#new-log').serialize();
+    	$('#new-log')[0].reset();
+    	console.log("This is new log", newLog);
+    	$.ajax({
+    		method: 'POST',
+    		url: baseUrl + userId + "/colds/" + coldId + "/logs",
+    		data: newLog,
+    		success: function(taco) {
+    			console.log("this is taco", taco);
+      		}
+    	});
+    	location.reload();
 	});
 
 	// var url = window.location.href.split("/");

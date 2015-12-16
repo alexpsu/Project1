@@ -12,14 +12,12 @@ $(document).ready(function(){
 	var userHtml;
 	var userToOpen;
 	var userId;
+	var logId;
 
-	// If the .js pass handlebar this should show up
-	console.log("Go");
 
 	$.get(baseUrl, function(element){
 		source = $('#users-template').html();
 		template = Handlebars.compile(source);
-		// $userList = $('#users-list');
 		allUsers = element.users;
 		userHtml = template({users: allUsers});
 		$userList.append(userHtml);
@@ -29,7 +27,6 @@ $(document).ready(function(){
     	event.preventDefault();
 		source = $('#users-template').html();
 		template = Handlebars.compile(source);
-		// $userList = $('#users-list');
     	var newUser = $createUser.serialize();
     	$createUser[0].reset();
     	console.log("This is new user", newUser);
@@ -76,13 +73,14 @@ $(document).ready(function(){
     	location.reload();
 	});
 
-	$('#colds-list').on('click', '.cold', function (event) {
+	$('.select-cold').on('click', function (event) {
 		event.preventDefault();
 		var userUrl = window.location.href.split("/");
 		var userId = userUrl[userUrl.length-1];
-		coldId = $(this).attr('data-id');
+		var coldId = $(this).closest('.cold').attr('data-id');
+		console.log(coldId);
 		location.href = userId + "/colds/" + coldId;
-	});
+	})
 
 	$('#new-log').on('submit', function (event) {
     	event.preventDefault();
@@ -94,12 +92,81 @@ $(document).ready(function(){
     	console.log("This is new log", newLog);
     	$.ajax({
     		method: 'POST',
-    		url: baseUrl + userId + "/colds/" + coldId + "logs",
+    		url: baseUrl + userId + "/colds/" + coldId + "/logs",
     		data: newLog,
     		success: function(taco) {
     			console.log("this is taco", taco);
       		}
     	});
     	location.reload();
+	});
+	$('#colds-list').on('click', '.delete-cold', function (event) {
+		event.preventDefault();
+		var url = window.location.href.split("/");
+		var userId = url[url.length-1];
+		var coldId = $(this).closest('.cold').attr('data-id');
+		$.ajax({
+			method: 'DELETE',
+			url: baseUrl + userId + "/colds/" + coldId,
+			success: function(element) {
+				console.log(element);
+			}
+		});
+		location.reload();
+	});
+
+	$('#colds-list').on('submit', '.update-cold', function (event) {
+		event.preventDefault();
+		var url = window.location.href.split("/");
+		var userId = url[url.length-1];
+		var coldId = $(this).closest('.cold').attr('data-id');
+		var updatedCold = $(this).serialize();
+		$('.update-cold')[0].reset();
+		$.ajax({
+			method: 'PUT',
+			url: baseUrl + userId + "/colds/" + coldId,
+			data: updatedCold,
+			success: function(element) {
+				console.log(element);
+			}
+		});
+		location.reload();
+	});
+
+	$('#logs-list').on('click', '.delete-log', function (event) {
+		event.preventDefault();
+		var url = window.location.href.split("/");
+		var userId = url[4];
+		var coldId = url[url.length-1];
+		var logId = $(this).closest('.log').attr('data-id');
+		console.log(logId);
+		$.ajax({
+			method: 'DELETE',
+			url: baseUrl + userId + "/colds/" + coldId + "/logs/" + logId,
+			success: function(element) {
+				console.log(element);
+			}
+		});
+		location.reload();
+	});
+
+	$('#logs-list').on('submit', '.update-log', function (event) {
+		event.preventDefault();
+		var url = window.location.href.split("/");
+		var userId = url[4];
+		var coldId = url[url.length-1];
+		var logId = $(this).closest('.log').attr('data-id');
+		var updatedLog = $(this).serialize();
+		$('.update-log')[0].reset();
+		console.log(logId);
+		$.ajax({
+			method: 'PUT',
+			url: baseUrl + userId + "/colds/" + coldId + "/logs/" + logId,
+			data: updatedLog,
+			success: function(element) {
+				console.log(element);
+			}
+		});
+		location.reload();
 	});
 });

@@ -22,7 +22,7 @@ var sampleLogs =[
 {
 	currentDate: '2015-12-12',
 	feelScale: 1,
-	Symptoms:[ 'cough', 'soar-throat', 'fever' ],
+	symptoms:[ 'cough', 'soar-throat', 'fever' ],
 	vitamins: 1,
 	exercise: 'ran',
 	details: 'Morning, feel like shit.'
@@ -30,7 +30,7 @@ var sampleLogs =[
 {
 	currentDate: '2015-12-18',
 	feelScale: 3,
-	Symptoms:[ 'tired', 'runny-nose' ],
+	symptoms:[ 'tired', 'runny-nose' ],
 	vitamins: 3,
 	exercise: 'spin class',
 	details: 'Evening, feel better.'

@@ -117,7 +117,6 @@ app.put('/api/users/:userId/colds/:id', function index(req, res){
 app.delete('/api/users/:userId/colds/:id', function(req, res) {
 	var userId = req.params.userId;
 	var coldId = req.params.id;
-	console.log(req.params);
 	db.User.findOne({_id: userId}, function(err, user) {
     	if (err) {console.log(error, err);}
     	// find song embedded in album
@@ -132,15 +131,17 @@ app.delete('/api/users/:userId/colds/:id', function(req, res) {
     })
 });
 
-app.get('/api/users/:userId/colds/:coldId/logs', function index(req, res){
-	console.log('requested user id=', req.params.userid);
-	var coldId = req.params.coldId;
-	db.User.findOne({_id: req.params.userid}, function(err, user) {
-		var foundCold = user.colds.id(coldId);
-		var logs = foundCold.logs;
-		res.json(logs);
-    });
-});
+//log apis
+
+// app.get('/api/users/:userId/colds/:coldId/logs', function index(req, res){
+// 	console.log('requested user id=', req.params.userid);
+// 	var coldId = req.params.coldId;
+// 	db.User.findOne({_id: req.params.userid}, function(err, user) {
+// 		var foundCold = user.colds.id(coldId);
+// 		var logs = foundCold.logs;
+// 		res.json(logs);
+//     });
+// });
 
 app.post('/api/users/:userId/colds/:coldId/logs', function create(req, res){
   var coldId = req.params.coldId;
@@ -160,16 +161,59 @@ app.post('/api/users/:userId/colds/:coldId/logs', function create(req, res){
   });
 });
 
-app.get('/api/users/:userId/colds/:coldId/logs/:id', function index(req, res){
-	console.log('requested user id=', req.params.userid);
+// app.get('/api/users/:userId/colds/:coldId/logs/:id', function index(req, res){
+// 	var userId = req.params.userId;
+// 	var coldId = req.params.coldId;
+// 	var logId = req.params.id;
+// 	db.User.findOne({_id: userId}, function(err, user) {
+// 		var foundCold = user.colds.id(coldId);
+// 		var foundLog = foundCold.logs.id(logId);
+// 		res.json(foundLog);
+//     });
+// });
+
+app.put('/api/users/:userId/colds/:coldId/logs/:id', function index(req, res){
+	var userId = req.params.userId;
 	var coldId = req.params.coldId;
 	var logId = req.params.id;
-	db.User.findOne({_id: req.params.userid}, function(err, user) {
-		var foundCold = user.colds.id(coldId);
-		var logs = foundCold.logs.id(logId);
-		res.json(logs);
+	db.User.findOne({_id: userId}, function(err, user) {
+	  	var foundCold = user.colds.id(coldId);
+	  	var foundLog = foundCold.logs.id(logId);
+  		foundLog.currentDate = req.body.currentDate;
+  		foundLog.feelScale = req.body.feelScale;
+  		foundLog.symptoms = req.body.symptoms;
+  		foundLog.vitamins = req.body.vitamins;
+  		foundLog.exercise = req.body.exercise;
+  		foundLog.details = req.body.details;
+
+    	user.save(function(err, saved) {
+    		if(err) { console.log('error', err); }
+    		res.json(saved);
+    	});  	
     });
 });
+
+app.delete('/api/users/:userId/colds/:coldId/logs/:id', function(req, res) {
+	var userId = req.params.userId;
+	var coldId = req.params.coldId;
+	var logId = req.params.id;
+	db.User.findOne({_id: userId}, function(err, user) {
+    	if (err) {console.log(error, err);}
+    	// find cold embedded in user
+    	var foundCold = user.colds.id(coldId);
+    	// find log embedded in cold
+    	var foundLog = foundCold.logs.id(logId)
+    	// delete
+    	foundLog.remove();
+    	// save changes
+    	user.save(function(err, saved) {
+    		if(err) { console.log('error', err); }
+    		res.json(saved);
+    	});
+    })
+});
+
+
 
 /**********
  * SERVER *

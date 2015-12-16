@@ -122,7 +122,6 @@ app.delete('/api/users/:userId/colds/:id', function(req, res) {
     	if (err) {console.log(error, err);}
     	// find song embedded in album
     	var foundCold = user.colds.id(coldId);
-
     	// delete
     	foundCold.remove();
     	// save changes
@@ -145,7 +144,7 @@ app.get('/api/users/:userId/colds/:coldId/logs', function index(req, res){
 
 app.post('/api/users/:userId/colds/:coldId/logs', function create(req, res){
   var coldId = req.params.coldId;
-  req.body.symptons = req.body.symptons.split(",");
+  req.body.symptoms = req.body.symptoms.split(",");
   var newLog = new db.Log(req.body);
   db.User.findOne({_id: req.params.userId}, function(err, user) {
     if (err) { console.log('error', err); }

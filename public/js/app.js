@@ -5,7 +5,7 @@ $(document).ready(function(){
 	var template;
 	var baseUrl = '/api/users/';
 	var allUsers = [];
-	var $userList;
+	var $userList = $('#users-list');
 	var $createUser = $('#create-user');
 	var sourceUser;
 
@@ -13,11 +13,13 @@ $(document).ready(function(){
 	var userToOpen;
 	var userId;
 
+	// If the .js pass handlebar this should show up
+	console.log("Go");
 
 	$.get(baseUrl, function(element){
 		source = $('#users-template').html();
 		template = Handlebars.compile(source);
-		$userList = $('#users-list');
+		// $userList = $('#users-list');
 		allUsers = element.users;
 		userHtml = template({users: allUsers});
 		$userList.append(userHtml);
@@ -25,9 +27,9 @@ $(document).ready(function(){
 
 	$createUser.on('submit', function (event) {
     	event.preventDefault();
-    	source = $('#users-template').html();
+		source = $('#users-template').html();
 		template = Handlebars.compile(source);
-		$userList = $('#users-list');
+		// $userList = $('#users-list');
     	var newUser = $createUser.serialize();
     	$createUser[0].reset();
     	console.log("This is new user", newUser);
@@ -92,7 +94,7 @@ $(document).ready(function(){
     	console.log("This is new log", newLog);
     	$.ajax({
     		method: 'POST',
-    		url: baseUrl + userId + "/colds/" + coldId + "/logs",
+    		url: baseUrl + userId + "/colds/" + coldId + "logs",
     		data: newLog,
     		success: function(taco) {
     			console.log("this is taco", taco);
@@ -100,22 +102,4 @@ $(document).ready(function(){
     	});
     	location.reload();
 	});
-
-	// var url = window.location.href.split("/");
-	// var id = url[url.length-1];
-	// $.get(baseUrl + "/" + id, function(element){
-	// 	sourceUser = $('#user-template').html();
-	// 	template = Handlebars.compile(sourceUser);
-	// 	var $userName = $('#user-Name');
-	// 	var userNameHtml = template({user: element});
-	// 	$userName.append(userNameHtml);
-	// 	$('#cold-name').append(userNameHtml);
-
-	// 	sourceCold = $('#colds-template').html();
-	// 	template = Handlebars.compile(sourceCold);
-	// 	var $coldslist = $('#colds-list');
-	// 	var coldsHtml = template({user: element});
-	// 	$coldslist.append(coldsHtml);
-	// })
-
 });

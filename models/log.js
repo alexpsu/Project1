@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var LogSchema = new Schema({
 	currentDate: String,
 	feelScale: Number,
-	Symptons:[String],
+	Symptoms:[String],
 	vitamins: Number,
 	exercise: String,
 	details: String,

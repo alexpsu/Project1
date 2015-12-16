@@ -22,7 +22,7 @@
       <div id="user-Name">
         <h2>Alright {{userName}}</h2>
     	</div>
-    		<h3>Let's take a look at {{cold.name}}</h3>
+    		<h3>Let's take a look at your {{cold.name}}</h3>
   	</div>
 	</div>
 
@@ -54,9 +54,9 @@
 
         <!-- Text area-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="dateEnd">Symptons? (commas between please)</label>
+          <label class="col-md-4 control-label" for="dateEnd">Symptoms? (commas between please)</label>
           <div class="col-md-4">
-          <textarea id="symptons" name="symptons" class="form-control">cough, soar-throat</textarea>
+          <textarea id="symptoms" name="symptoms" class="form-control">cough, soar-throat</textarea>
           </div>
         </div>
 
@@ -108,11 +108,22 @@
  
       {{#each cold.logs}}
       <li class="list-group-item cold" data-id="{{_id}}">
+      <div class="pull-right">
+      <a href="javascript:void(0)" data-toggle="collapse" data-target="#update-{{_id}}">
+        <span class="glyphicon glyphicon-pencil"></span>
+      </a>
+      
+      <!-- trash can icon to delete movie -->
+       <a href="javascript:void(0)" class="delete-movie">
+        <span class="glyphicon glyphicon-trash"></span>
+      </a>
+      </div>
       <h4><strong>Log made on {{currentDate}}</strong></h4>
       <div>On {{currentDate}} you were a <strong>{{feelScale}} out of 10.</strong></div>
       <div>Your vitamin intake was a <strong>{{vitamins}} out of 10.</strong></div>
       <div>Your exercise yesterday consisted of: <strong>{{exercise}}.</strong></div>
       <div>Here are your details on the day: <strong>{{details}}</strong></div>
+
       {{/each}}
 
 	</div>

@@ -144,20 +144,18 @@ app.get('/api/users/:userId/colds/:coldId/logs', function index(req, res){
 });
 
 app.post('/api/users/:userId/colds/:coldId/logs', function create(req, res){
-  console.log('body', req.body);
   var coldId = req.params.coldId;
   req.body.symptons = req.body.symptons.split(",");
-  var newLog = req.body;
+  var newLog = new db.Log(req.body);
   db.User.findOne({_id: req.params.userId}, function(err, user) {
     if (err) { console.log('error', err); }
     var foundCold = user.colds.id(coldId);
     var log = new db.Log(newLog);
-    console.log(log);
     foundCold.logs.push(log);
 
-    foundCold.save(function(err, savedLog) {
+    user.save(function(err, savedLog) {
       if (err) { console.log('error', err); }
-      console.log('user with new log saved:', savedLog);
+      console.log('\nuser with new log saved:', savedLog);
       res.json(foundCold.logs);
     });
   });

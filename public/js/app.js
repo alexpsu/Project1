@@ -23,6 +23,28 @@ $(document).ready(function(){
 		$userList.append(userHtml);
 	});
 
+	//Takes client from homepage to a user's page
+	$('#users-list').on('click', '.user', function (event) {
+		event.preventDefault();
+		userId = $(this).closest('.user').attr('data-id');
+		userToOpen = allUsers.filter(function (user) {
+			return user._id == userId;
+			console.log(user);
+		});
+		location.href = "users/" + userId;
+	});
+
+	//Takes client from user page to cold page
+	$('.select-cold').on('click', function (event) {
+		event.preventDefault();
+		var userUrl = window.location.href.split("/");
+		var userId = userUrl[userUrl.length-1];
+		var coldId = $(this).closest('.cold').attr('data-id');
+		console.log(coldId);
+		location.href = userId + "/colds/" + coldId;
+	});
+
+	//Creates a user
 	$createUser.on('submit', function (event) {
     	event.preventDefault();
 		source = $('#users-template').html();
@@ -45,16 +67,7 @@ $(document).ready(function(){
     	});
 	});
 
-	$('#users-list').on('click', '.user', function (event) {
-		event.preventDefault();
-		userId = $(this).closest('.user').attr('data-id');
-		userToOpen = allUsers.filter(function (user) {
-			return user._id == userId;
-			console.log(user);
-		});
-		location.href = "users/" + userId;
-	});
-
+	//Creates a new cold
 	$('#new-cold').on('submit', function (event) {
     	event.preventDefault();
 		var url = window.location.href.split("/");
@@ -73,48 +86,7 @@ $(document).ready(function(){
     	location.reload();
 	});
 
-	$('.select-cold').on('click', function (event) {
-		event.preventDefault();
-		var userUrl = window.location.href.split("/");
-		var userId = userUrl[userUrl.length-1];
-		var coldId = $(this).closest('.cold').attr('data-id');
-		console.log(coldId);
-		location.href = userId + "/colds/" + coldId;
-	})
-
-	$('#new-log').on('submit', function (event) {
-    	event.preventDefault();
-    	var url = window.location.href.split("/");
-		var userId = url[4];
-		var coldId = url[url.length-1];
-    	var newLog = $('#new-log').serialize();
-    	$('#new-log')[0].reset();
-    	console.log("This is new log", newLog);
-    	$.ajax({
-    		method: 'POST',
-    		url: baseUrl + userId + "/colds/" + coldId + "/logs",
-    		data: newLog,
-    		success: function(taco) {
-    			console.log("this is taco", taco);
-      		}
-    	});
-    	location.reload();
-	});
-	$('#colds-list').on('click', '.delete-cold', function (event) {
-		event.preventDefault();
-		var url = window.location.href.split("/");
-		var userId = url[url.length-1];
-		var coldId = $(this).closest('.cold').attr('data-id');
-		$.ajax({
-			method: 'DELETE',
-			url: baseUrl + userId + "/colds/" + coldId,
-			success: function(element) {
-				console.log(element);
-			}
-		});
-		location.reload();
-	});
-
+	//Updates a cold
 	$('#colds-list').on('submit', '.update-cold', function (event) {
 		event.preventDefault();
 		var url = window.location.href.split("/");
@@ -133,16 +105,15 @@ $(document).ready(function(){
 		location.reload();
 	});
 
-	$('#logs-list').on('click', '.delete-log', function (event) {
+	//deletes a cold
+	$('#colds-list').on('click', '.delete-cold', function (event) {
 		event.preventDefault();
 		var url = window.location.href.split("/");
-		var userId = url[4];
-		var coldId = url[url.length-1];
-		var logId = $(this).closest('.log').attr('data-id');
-		console.log(logId);
+		var userId = url[url.length-1];
+		var coldId = $(this).closest('.cold').attr('data-id');
 		$.ajax({
 			method: 'DELETE',
-			url: baseUrl + userId + "/colds/" + coldId + "/logs/" + logId,
+			url: baseUrl + userId + "/colds/" + coldId,
 			success: function(element) {
 				console.log(element);
 			}
@@ -150,6 +121,27 @@ $(document).ready(function(){
 		location.reload();
 	});
 
+	//Makes a new log
+	$('#new-log').on('submit', function (event) {
+    	event.preventDefault();
+    	var url = window.location.href.split("/");
+		var userId = url[4];
+		var coldId = url[url.length-1];
+    	var newLog = $('#new-log').serialize();
+    	$('#new-log')[0].reset();
+    	console.log("This is new log", newLog);
+    	$.ajax({
+    		method: 'POST',
+    		url: baseUrl + userId + "/colds/" + coldId + "/logs",
+    		data: newLog,
+    		success: function(taco) {
+    			console.log("this is taco", taco);
+      		}
+    	});
+    	location.reload();
+	});
+
+	//updates a log
 	$('#logs-list').on('submit', '.update-log', function (event) {
 		event.preventDefault();
 		var url = window.location.href.split("/");
@@ -169,4 +161,23 @@ $(document).ready(function(){
 		});
 		location.reload();
 	});
+
+	//deletes a log
+	$('#logs-list').on('click', '.delete-log', function (event) {
+		event.preventDefault();
+		var url = window.location.href.split("/");
+		var userId = url[4];
+		var coldId = url[url.length-1];
+		var logId = $(this).closest('.log').attr('data-id');
+		console.log(logId);
+		$.ajax({
+			method: 'DELETE',
+			url: baseUrl + userId + "/colds/" + coldId + "/logs/" + logId,
+			success: function(element) {
+				console.log(element);
+			}
+		});
+		location.reload();
+	});
+
 });

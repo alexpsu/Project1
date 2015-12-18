@@ -1,12 +1,8 @@
 .jumbotron {
   background-color: white;
-  height: 400px;
-  background: url("../images/background4.png");
+  height: 450px;
+  background: url("../images/background.png");
   background-repeat: no-repeat;
-}
-
-img {
-	width: 100px
 }
 
 .inline-header {

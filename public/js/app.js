@@ -10,7 +10,6 @@ $(document).ready(function(){
 	var sourceUser;
 
 	var userHtml;
-	var userToOpen;
 	var userId;
 	var logId;
 
@@ -27,10 +26,6 @@ $(document).ready(function(){
 	$('#users-list').on('click', '.user', function (event) {
 		event.preventDefault();
 		userId = $(this).closest('.user').attr('data-id');
-		userToOpen = allUsers.filter(function (user) {
-			return user._id == userId;
-			console.log(user);
-		});
 		location.href = "users/" + userId;
 	});
 

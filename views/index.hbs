@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Let's Get Better</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+
+	<!-- VENDOR SCRIPTS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.min.js"></script>
+
+	<!-- APPLICATION SCRIPTS -->
+	<script src="js/app.js"></script>
+
+</head>
+<body>
+	<div class="jumbotron">
+    <div class="container">
+    	<h1>Feeling CRUDdy?</h1>
+    	<p>Let's make you feel better!</p>
+    </div>
+  </div>
+
+  <section id='user-form' class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+
+        <form class="form-horizontal" id='create-user'>
+        <fieldset>
+
+        <!-- Form Name -->
+        <legend>New User</legend>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="name">Your Name</label>
+          <div class="col-md-4">
+            <input id="userName" name="userName" type="text" placeholder="" class="form-control input-md" required="">
+
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="name">Gender</label>
+          <div class="col-md-4">
+            <input id="gender" name="gender" type="text" placeholder="" class="form-control input-md" required="">
+
+          </div>
+        </div>        
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="name">Age</label>
+          <div class="col-md-4">
+            <input id="age" name="age" type="age" placeholder="" class="form-control input-md" required="">
+
+          </div>
+        </div>
+
+
+
+        <!-- Button -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="singlebutton">Save User</label>
+          <div class="col-md-4">
+            <button id="singlebutton" name="singlebutton" class="btn btn-info">Submit</button>
+          </div>
+        </div>
+        </fieldset>
+      	</form>
+    	</div>
+    </div>
+  </section>
+
+  <section class="container">
+  	<div class="row">
+    	<div class="col-md-10">
+      	<h2>Users</h2>
+    	</div>
+  	</div>
+  	<!-- albums! -->
+  	<div id='users-list'>
+	    <!-- handlebars template -->
+	      {{#each users}}
+	      <li class="list-group-item user" data-id="{{_id}}">
+	      <a href=""><strong>{{userName}}</strong></a>
+	      <span>{{colds.length}} colds</span>
+	      {{/each}}
+  	</div>
+  </section>
+    <br>
+    <br>
+</body>
+</html>

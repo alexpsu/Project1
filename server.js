@@ -13,7 +13,9 @@ app.set('view engine', 'hbs');
 var db = require("./models");
 
 app.get('/', function homepage (req, res) {
-  res.sendFile(__dirname + '/views/index.html');
+	db.User.find(function(err, users){
+	res.render('index' , {users});
+	});
 });
 
 app.get('/users/:id', function homepage (req, res) {

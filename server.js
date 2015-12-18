@@ -26,8 +26,9 @@ app.get('/users/:userId/colds/:id', function homepage (req, res) {
   db.User.findOne({_id: req.params.userId}, function(err, userdata) {
   	var coldId = req.params.id;
   	var name = userdata.userName;
+  	var id = userdata._id;
   	var foundCold = userdata.colds.id(coldId);
-  	res.render('colds/show', {userName: name, cold: foundCold});
+  	res.render('colds/show', {userName: name, uId: id, cold: foundCold});
   });
 });
 

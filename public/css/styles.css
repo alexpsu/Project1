@@ -1,15 +1,28 @@
 .jumbotron {
-  background-image: url(/images/Background.png);
-  background-size: inherit;
+  background-color: white;
+  height: 400px;
+  background: url("../images/background4.png");
   background-repeat: no-repeat;
 }
 
-.jumbotron .container {
-	height: 275px;
+img {
+	width: 100px
 }
 
 .inline-header {
   display: inline-block;
   vertical-align: baseline;
   margin-right: 12px;
+}
+
+#bg{
+
+}
+
+ol.breadcrumb{
+	background-color: #CC1C00;
+}
+
+.sendHome {
+	color: white;
 }

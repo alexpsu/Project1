@@ -65,6 +65,7 @@ $(document).ready(function(){
 				$userList.append(userHtml);
       		}
     	});
+    	window.setTimeout(function(){location.reload()},500);
 	});
 
 	//Creates a new cold
@@ -83,7 +84,7 @@ $(document).ready(function(){
     			console.log("this is taco", taco);
       		}
     	});
-    	location.reload();
+    	window.setTimeout(function(){location.reload()},500);
 	});
 
 	//Updates a cold
@@ -102,7 +103,7 @@ $(document).ready(function(){
 				console.log(element);
 			}
 		});
-		location.reload();
+		window.setTimeout(function(){location.reload()},500);
 	});
 
 	//deletes a cold
@@ -118,7 +119,7 @@ $(document).ready(function(){
 				console.log(element);
 			}
 		});
-		location.reload();
+		window.setTimeout(function(){location.reload()},500);
 	});
 
 	//Makes a new log
@@ -138,7 +139,7 @@ $(document).ready(function(){
     			console.log("this is taco", taco);
       		}
     	});
-    	location.reload();
+    	window.setTimeout(function(){location.reload()},500);
 	});
 
 	//updates a log
@@ -159,7 +160,7 @@ $(document).ready(function(){
 				console.log(element);
 			}
 		});
-		location.reload();
+		window.setTimeout(function(){location.reload()},500);
 	});
 
 	//deletes a log
@@ -177,7 +178,7 @@ $(document).ready(function(){
 				console.log(element);
 			}
 		});
-		location.reload();
+		window.setTimeout(function(){location.reload()},500);
 	});
 
 });

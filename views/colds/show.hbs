@@ -26,6 +26,11 @@
   	</div>
 	</div>
 
+  <ol class="breadcrumb">
+    <li><a class="sendHome" href="/">Home</a></li>
+    <li><a class="sendHome" href="/users/{{uId}}">{{userName}}</a></li>
+  </ol>
+
   <section id='log-form' class="container">
   <div class="row">
   <div class="col-md-10 col-md-offset-1">
@@ -94,73 +99,78 @@
     </form>
   </div>
   </div>
-</section>
+	</section>
 
-<section class="container">
-	<div class="row">
-  	<div class="col-md-10">
-    	<h2>Logs</h2>
-  	</div>
-	</div>
-	<!-- User! -->
-	<div id='logs-list'>
-    <!-- handlebars template -->
- 
-      {{#each cold.logs}}
-      <li class="list-group-item log" data-id="{{_id}}">
-      <div class="pull-right">
+	<section class="container">
+		<div class="row">
+	  	<div class="col-md-10">
+	    	<h2>Logs</h2>
+	  	</div>
+		</div>
+		<!-- User! -->
+		<div id='logs-list'>
+	    <!-- handlebars template -->
+	 
+	      {{#each cold.logs}}
+	      <li class="list-group-item log" data-id="{{_id}}">
+	      <div class="pull-right">
 
-      <a href="javascript:void(0)" data-toggle="collapse" data-target="#update-{{_id}}">
-        <span class="glyphicon glyphicon-pencil"></span>
-      </a>
-      
-      <!-- trash can icon to delete log -->
-       <a href="javascript:void(0)" class="delete-log">
-        <span class="glyphicon glyphicon-trash"></span>
-      </a>
+	      <a href="javascript:void(0)" data-toggle="collapse" data-target="#update-{{_id}}">
+	        <span class="glyphicon glyphicon-pencil"></span>
+	      </a>
+	      
+	      <!-- trash can icon to delete log -->
+	       <a href="javascript:void(0)" class="delete-log">
+	        <span class="glyphicon glyphicon-trash"></span>
+	      </a>
 
-      </div>
-      <h4><strong>Log made on {{currentDate}}</strong></h4>
-      <div>On {{currentDate}} you were a <strong>{{feelScale}} out of 10.</strong></div>
-      <div>Your vitamin intake was a <strong>{{vitamins}} out of 10.</strong></div>
-      <div>Your exercise yesterday consisted of: <strong>{{exercise}}.</strong></div>
-      <div>Here are your details on the day: <strong>{{details}}</strong></div>
+	      </div>
+	      <h4><strong>Log made on {{currentDate}}</strong></h4>
+	      <div>On {{currentDate}} you felt like a <strong>{{feelScale}}</strong> on a scale of 1 to 10.</div>
+	      <div>The day before your vitamin intake was a <strong>{{vitamins}}</strong> out of 10.</div>
+	      <div>Your exercise yesterday consisted of: <strong>{{exercise}}.</strong></div>
+	      <div>Here are your details on the day: <strong>{{details}}</strong></div>
 
-<!-- form to update log -->
-	    <div class="collapse" id="update-{{_id}}">
-	      <br>
-	      <form class="form-inline update-log">
-					<div class="form-group">
-					<label for="currentDate">The current date</label>
-					  <input type="text" name="currentDate" class="form-control" placeholder="" value="{{currentDate}}">
-					</div>
-					<div class="form-group">
-					<label for="feelScale">How you felt (1-10)</label>
-						<input type="text" name="feelScale" class="form-control" placeholder="" value="{{feelScale}}">
-					</div>
-					<div class="form-group">
-					<label for="symptoms">Symptoms</label>
-						<input type="text" name="symptoms" class="form-control" placeholder="" value="{{symptoms}}">
-					</div>
-					<div class="form-group">
-					<label for="vitamins">Vitamin intake (1-10)</label>
-						<input type="text" name="vitamins" class="form-control" placeholder="" value="{{vitamins}}">
-					</div>
-					<div class="form-group">
-					<label for="exericse">What exercise did you do?</label>
-						<input type="text" name="exercise" class="form-control" placeholder="" value="{{exercise}}">
-					</div>
-					<div class="form-group">
-					<label for="details">Extra details</label>
-						<input type="text" name="details" class="form-control" placeholder="" value="{{details}}">
-					</div>
-	        <div class="form-group">
-	        	<input type="submit" class="btn btn-block btn-success" value="Update">
-	        </div>
-	      </form>
-	    </div>
+	<!-- form to update log -->
+		    <div class="collapse" id="update-{{_id}}">
+		      <br>
+		      <form class="form-inline update-log">
+						<div class="form-group">
+						<label for="currentDate">The current date</label>
+						  <input type="text" name="currentDate" class="form-control" placeholder="" value="{{currentDate}}">
+						</div>
+						<div class="form-group">
+						<label for="feelScale">How you felt (1-10)</label>
+							<input type="text" name="feelScale" class="form-control" placeholder="" value="{{feelScale}}">
+						</div>
+						<div class="form-group">
+						<label for="symptoms">Symptoms</label>
+							<input type="text" name="symptoms" class="form-control" placeholder="" value="{{symptoms}}">
+						</div>
+						<div class="form-group">
+						<label for="vitamins">Vitamin intake (1-10)</label>
+							<input type="text" name="vitamins" class="form-control" placeholder="" value="{{vitamins}}">
+						</div>
+						<div class="form-group">
+						<label for="exericse">What exercise did you do?</label>
+							<input type="text" name="exercise" class="form-control" placeholder="" value="{{exercise}}">
+						</div>
+						<div class="form-group">
+						<label for="details">Extra details</label>
+							<input type="text" name="details" class="form-control" placeholder="" value="{{details}}">
+						</div>
+		        <div class="form-group">
+		        	<input type="submit" class="btn btn-block btn-success" value="Update">
+		        </div>
+		      </form>
+		    </div>
 
-      {{/each}}
+	      {{/each}}
 
-	</div>
-</section>
+		</div>
+	</section>
+		<br>
+		<br>
+</body>
+
+</html>

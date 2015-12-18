@@ -18,6 +18,9 @@ Welcome to Feel Better, my very first web application, made to help a user bette
 
 To run Feel Better on your computer clone the repo and run “npm init” and then “npm install” in your terminal. After completion run nodemon in the project1 directory, and go to “localhost:3000” to see the web application up and running.
 
+![Feel better]
+(http://i.imgur.com/cFlXWVn.png)
+
 Code Snippet:
 ```
 	$('#logs-list').on('click', '.delete-log', function (event) {

@@ -15,11 +15,7 @@ $(document).ready(function(){
 
 
 	$.get(baseUrl, function(element){
-		source = $('#users-template').html();
-		template = Handlebars.compile(source);
-		allUsers = element.users;
-		userHtml = template({users: allUsers});
-		$userList.append(userHtml);
+
 	});
 
 	//Takes client from homepage to a user's page
@@ -42,8 +38,6 @@ $(document).ready(function(){
 	//Creates a user
 	$createUser.on('submit', function (event) {
     	event.preventDefault();
-		source = $('#users-template').html();
-		template = Handlebars.compile(source);
     	var newUser = $createUser.serialize();
     	$createUser[0].reset();
     	console.log("This is new user", newUser);
@@ -53,11 +47,6 @@ $(document).ready(function(){
     		data: newUser,
     		success: function(taco) {
     			console.log("this is taco", taco);
-    			$userList.empty();
-    			allUsers.push(taco.user);
-    			console.log("These are all users", allUsers);
-    			userHtml = template({users: allUsers});
-				$userList.append(userHtml);
       		}
     	});
     	window.setTimeout(function(){location.reload()},500);

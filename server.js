@@ -14,7 +14,7 @@ var db = require("./models");
 
 app.get('/', function homepage (req, res) {
 	db.User.find(function(err, users){
-	res.render('index' , {users});
+	   res.render('index' , {users});
 	});
 });
 
@@ -57,7 +57,6 @@ app.get('/api/users', function index(req, res){
 app.get('/api/users/:id', function index(req, res){
 	db.User.findOne({_id: req.params.id}, function(err, user) {
 		res.json(user);
-		var foundCold = user.colds.id(coldId);
 	});
 });
 
@@ -113,7 +112,7 @@ app.put('/api/users/:userId/colds/:id', function index(req, res){
     	user.save(function(err, saved) {
     		if(err) { console.log('error', err); }
     		res.json(saved);
-    	});  	
+    	});
     });
 });
 
@@ -192,7 +191,7 @@ app.put('/api/users/:userId/colds/:coldId/logs/:id', function index(req, res){
     	user.save(function(err, saved) {
     		if(err) { console.log('error', err); }
     		res.json(saved);
-    	});  	
+    	});
     });
 });
 

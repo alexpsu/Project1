@@ -116,10 +116,10 @@ $(document).ready(function(){
     		url: baseUrl + userId + "/colds/" + coldId + "/logs",
     		data: newLog,
     		success: function(taco) {
-    			console.log("this is taco", taco);
+    			console.log("received new-log", taco);
+					location.reload();
       		}
     	});
-    	window.setTimeout(function(){location.reload()},500);
 	});
 
 	//updates a log

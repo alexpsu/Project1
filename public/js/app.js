@@ -14,10 +14,6 @@ $(document).ready(function(){
 	var logId;
 
 
-	$.get(baseUrl, function(element){
-
-	});
-
 	//Takes client from homepage to a user's page
 	$('#users-list').on('click', '.user', function (event) {
 		event.preventDefault();

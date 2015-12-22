@@ -199,12 +199,12 @@ app.delete('/api/users/:userId/colds/:coldId/logs/:id', function(req, res) {
 	var userId = req.params.userId;
 	var coldId = req.params.coldId;
 	var logId = req.params.id;
-	db.User.findOne({_id: userId}, function(err, user) {
+	db.User.findById(userId, function(err, user) {
     	if (err) {console.log(error, err);}
     	// find cold embedded in user
     	var foundCold = user.colds.id(coldId);
     	// find log embedded in cold
-    	var foundLog = foundCold.logs.id(logId)
+    	var foundLog = foundCold.logs.id(logId);
     	// delete
     	foundLog.remove();
     	// save changes
@@ -212,7 +212,7 @@ app.delete('/api/users/:userId/colds/:coldId/logs/:id', function(req, res) {
     		if(err) { console.log('error', err); }
     		res.json(saved);
     	});
-    })
+    });
 });
 
 
